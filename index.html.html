@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audacity Label File Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 2em auto;
+      padding: 1em;
+    }
+    textarea, input {
+      width: 100%;
+      margin-top: 10px;
+    }
+    textarea {
+      height: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Audacity Label File Generator</h1>
+  <p>Paste your timestamped tracklist below (e.g., <code>0:00 Song Title</code>)</p>
+  <textarea id="input" placeholder="0:00 Intro\n1:30 First Song\n3:45 Second Song"></textarea>
+
+  <label for="endTime">End Time of Final Track (e.g., 6:03 or 1:04:52):</label>
+  <input type="text" id="endTime" placeholder="e.g., 6:03">
+
+  <button onclick="generateLabels()">Generate Label File</button>
+  <a id="downloadLink" style="display:none; margin-left: 10px;">Download Label File</a>
+
+  <script>
+    function timeToSeconds(timeStr) {
+      const parts = timeStr.trim().split(':').map(Number);
+      if (parts.length === 2) return parts[0] * 60 + parts[1];
+      if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+      return 0;
+    }
+
+    function generateLabels() {
+      const lines = document.getElementById('input').value.trim().split('\n');
+      const endTimeStr = document.getElementById('endTime').value.trim();
+      const timestamps = [];
+
+      for (let line of lines) {
+        const match = line.match(/^(\d{1,2}:\d{2}(?::\d{2})?)\s+(.+)/);
+        if (match) {
+          timestamps.push({
+            time: timeToSeconds(match[1]),
+            label: match[2]
+          });
+        }
+      }
+
+      if (endTimeStr) {
+        timestamps.push({ time: timeToSeconds(endTimeStr), label: null });
+      }
+
+      const labels = [];
+      for (let i = 0; i < timestamps.length - 1; i++) {
+        labels.push(`${timestamps[i].time.toFixed(3)}\t${timestamps[i + 1].time.toFixed(3)}\t${timestamps[i].label}`);
+      }
+
+      const blob = new Blob([labels.join('\n')], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.getElementById('downloadLink');
+      link.href = url;
+      link.download = 'audacity_labels.txt';
+      link.style.display = 'inline';
+      link.textContent = 'Download Label File';
+    }
+  </script>
+</body>
+</html>
