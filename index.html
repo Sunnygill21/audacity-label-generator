@@ -11,16 +11,15 @@
       max-width: 800px;
       margin: 2em auto;
       padding: 1em;
-      background-image: url('https://i.imgur.com/KI8ThFL.png');
-      background-repeat: no-repeat;
-      background-position: center top;
-      background-size: 250px;
-      background-attachment: fixed;
+      background-image: none;
     }
 
-    h1 {
-      color: #f5b700;
-      text-shadow: 0 0 5px #f5b70088;
+    #logo {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 0 10px #fff);
     }
 
     label, textarea, input, button {
@@ -38,7 +37,7 @@
     }
 
     button {
-      background-color: #f5b700;
+      background-color: #ffffff;
       color: #000;
       border: none;
       padding: 10px 20px;
@@ -49,7 +48,7 @@
     }
 
     button:hover {
-      background-color: #ffdd33;
+      background-color: #dddddd;
     }
 
     a#downloadLink {
@@ -60,7 +59,7 @@
   </style>
 </head>
 <body>
-  <h1>Audacity Label File Generator</h1>
+  <img src="trill-logo.png" alt="TRILL AILL Logo" id="logo">
   <p>Paste your timestamped tracklist below (e.g., <code>0:00 Song Title</code>)</p>
   <textarea id="input" placeholder="0:00 Intro\n1:30 First Song\n3:45 Second Song"></textarea>
 
