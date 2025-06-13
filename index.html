@@ -17,6 +17,7 @@
       color: #ffffff;
       text-shadow: 0 0 5px #ffffff88;
       text-align: center;
+      font-size: 2em;
     }
 
     label, textarea, input, button {
@@ -34,7 +35,8 @@
     }
 
     textarea {
-      height: 120px;
+      min-height: 120px;
+      resize: vertical;
     }
 
     button {
@@ -57,17 +59,10 @@
       display: inline-block;
       margin-top: 10px;
     }
-
-    .logo {
-      display: block;
-      margin: 0 auto;
-      max-width: 300px;
-      height: auto;
-    }
   </style>
 </head>
 <body>
-  <h1><img src="d08792ea-2b4b-4318-97c1-a65b521d7c9c.png" alt="TRILLGILL Logo" class="logo"></h1>
+  <h1>Audacity Label Generator</h1>
   <p>Paste your timestamped tracklist below (e.g., <code>0:00 Song Title</code>)</p>
   <textarea id="input" placeholder="0:00 Intro\n1:30 First Song\n3:45 Second Song"></textarea>
 
