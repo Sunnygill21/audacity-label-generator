@@ -90,21 +90,25 @@
         if (match) {
           timestamps.push({
             time: timeToSeconds(match[1]),
-            label: match[2]
+            label: match[2].replace(/\t/g, ' ').replace(/\n/g, ' ')
           });
         }
       }
 
       if (endTimeStr) {
-        timestamps.push({ time: timeToSeconds(endTimeStr), label: null });
+        timestamps.push({ time: timeToSeconds(endTimeStr), label: '' });
       }
 
       const labels = [];
       for (let i = 0; i < timestamps.length - 1; i++) {
-        labels.push(`${timestamps[i].time.toFixed(3)}\t${timestamps[i + 1].time.toFixed(3)}\t${timestamps[i].label}`);
+        labels.push(
+          `${timestamps[i].time.toFixed(3)}\t${timestamps[i + 1].time.toFixed(3)}\t${timestamps[i].label}`
+        );
       }
 
-      const blob = new Blob([labels.join('\n')], { type: 'text/plain' });
+      const labelContent = labels.join('\n');
+
+      const blob = new Blob([labelContent], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
 
       const link = document.getElementById('downloadLink');
