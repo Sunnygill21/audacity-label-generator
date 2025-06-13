@@ -4,40 +4,23 @@
   <meta charset="UTF-8">
   <title>Audacity Label File Generator</title>
   <style>
-    html, body {
+    body {
       font-family: 'Arial', sans-serif;
       background-color: #121212;
       color: #e0e0e0;
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .container {
-      width: 90%;
       max-width: 800px;
+      margin: 2em auto;
+      padding: 1em;
     }
 
-    .logo {
+    h1 {
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff88;
+      text-align: center;
+    }
+
+    label, textarea, input, button {
       display: block;
-      margin: 0 auto 20px;
-      max-width: 100%;
-      height: auto;
-    }
-
-    p, label {
-      margin-top: 10px;
-    }
-
-    textarea, input, button {
       width: 100%;
       margin-top: 10px;
     }
@@ -74,20 +57,25 @@
       display: inline-block;
       margin-top: 10px;
     }
+
+    .logo {
+      display: block;
+      margin: 0 auto;
+      max-width: 300px;
+      height: auto;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="trill-logo.png.png" alt="TRILLGILL Logo" class="logo">
-    <p>Paste your timestamped tracklist below (e.g., <code>0:00 Song Title</code>)</p>
-    <textarea id="input" placeholder="0:00 Intro\n1:30 First Song\n3:45 Second Song"></textarea>
+  <h1><img src="d08792ea-2b4b-4318-97c1-a65b521d7c9c.png" alt="TRILLGILL Logo" class="logo"></h1>
+  <p>Paste your timestamped tracklist below (e.g., <code>0:00 Song Title</code>)</p>
+  <textarea id="input" placeholder="0:00 Intro\n1:30 First Song\n3:45 Second Song"></textarea>
 
-    <label for="endTime">End Time of Final Track (e.g., 6:03 or 1:04:52):</label>
-    <input type="text" id="endTime" placeholder="e.g., 6:03">
+  <label for="endTime">End Time of Final Track (e.g., 6:03 or 1:04:52):</label>
+  <input type="text" id="endTime" placeholder="e.g., 6:03">
 
-    <button onclick="generateLabels()">Generate Label File</button>
-    <a id="downloadLink" style="display:none; margin-left: 10px;">Download Label File</a>
-  </div>
+  <button onclick="generateLabels()">Generate Label File</button>
+  <a id="downloadLink" style="display:none; margin-left: 10px;">Download Label File</a>
 
   <script>
     function timeToSeconds(timeStr) {
