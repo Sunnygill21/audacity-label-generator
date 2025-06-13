@@ -11,15 +11,16 @@
       max-width: 800px;
       margin: 2em auto;
       padding: 1em;
-      background-image: none;
+      background-image: url('trillgill_transparent.png');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: 250px;
+      background-attachment: fixed;
     }
 
-    #logo {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      margin: 0 auto 20px;
-      filter: drop-shadow(0 0 10px #fff);
+    h1 {
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff88;
     }
 
     label, textarea, input, button {
@@ -34,6 +35,10 @@
       color: #fff;
       padding: 8px;
       border-radius: 4px;
+    }
+
+    textarea {
+      height: 300px;
     }
 
     button {
@@ -59,7 +64,7 @@
   </style>
 </head>
 <body>
-  <img src="trill-logo.png" alt="TRILL AILL Logo" id="logo">
+  <h1><img src="trillgill_transparent.png" alt="TRILLGILL" style="max-width: 100%; height: auto;"></h1>
   <p>Paste your timestamped tracklist below (e.g., <code>0:00 Song Title</code>)</p>
   <textarea id="input" placeholder="0:00 Intro\n1:30 First Song\n3:45 Second Song"></textarea>
 
